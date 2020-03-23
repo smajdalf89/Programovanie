@@ -1,0 +1,178 @@
+#telocvikarske menu
+import os
+from tkinter import Tk, PhotoImage, Menu, Frame, Text, Scrollbar, IntVar, StringVar, END, simpledialog, ttk
+import tkinter.filedialog
+import tkinter.messagebox
+import tkinter as tk
+import webbrowser
+
+PROGRAM_NAME = "Telocvikarsky program"
+
+root=Tk()
+root.geometry("800x600")
+root.title(PROGRAM_NAME)
+parent = tk.Frame(root)
+
+NORM_FONT = ("Verdana", 12)
+
+def popupmsg(msg):
+    popup = tk.Tk()
+    popup.wm_title("!")
+    label = ttk.Label(popup, text=msg, font=NORM_FONT)
+    label.pack(side="top", fill="x", pady=10)
+    B1 = ttk.Button(popup, text="chlapec",command=popup.destroy )
+    B2 = ttk.Button(popup, text="dievca", command=popup.destroy)
+    B1.pack()
+    B2.pack()
+    popup.mainloop()
+
+
+def hodmedicimbalom():
+    meno = simpledialog.askstring("Vlozte meno", "prosim zadajte meno ziaka")
+    hodmedicimbalom=[]
+    y = simpledialog.askstring("Trieda", "Zadaj triedu")
+    hodmedicimbalom.append(y)
+    v = simpledialog.askfloat("Vysledok", "Zadaj vysledok vykonu")
+    hodmedicimbalom.append(v)
+
+    #zoznam[meno] = hodmedicimbalom
+
+
+
+def exit_editor():
+    if tkinter.messagebox.askokcancel("Zavrieť?", "Važne chceš isť preč?"):
+        root.destroy()
+
+def change_theme():
+    selected_theme = theme_choice.get()
+    fg_bg_colors = color_schemes.get(selected_theme)
+    foreground_color, background_color = fg_bg_colors.split('.')
+    content_text.config(
+        background=background_color, fg=foreground_color)
+def pomoc():
+    tkinter.messagebox.showinfo("Pomoc", "{} {}".format(PROGRAM_NAME, "\nProgram vytvoreny na pomoc ucitelom TSV\n Vytvorene z dovodu zaverecnej prace"))
+
+def ovyvojarovovi():
+    tkinter.messagebox.showinfo("O vyvojarovovi", "{} {}".format(PROGRAM_NAME, "\n Mgr.Michal Palica\n email:michal.palica@gmail.com\n tel.c:0902 222 171"))
+#menu
+menu_bar = Menu(root)
+file_menu = Menu(menu_bar, tearoff=0)
+submenu = Menu(file_menu)
+submenu1 = submenu
+submenu.add_command(label='1. Hod medicimbalom', command=hodmedicimbalom)
+submenu.add_command(label='2. Vydrž v zhybe-iba dievčata')
+submenu.add_command(label='3. Zhyby - chlapci')
+submenu.add_command(label='4. Člnkovy beh')
+submenu.add_command(label='5. 100 metrov')
+submenu.add_command(label='6. 1500 metrov')
+submenu.add_command(label='7. 3000 metrov')
+submenu.add_command(label='8. Hod granatom')
+submenu.add_command(label='9. Skok do piesku')
+submenu.add_command(label='10. Sed-ľah')
+submenu.add_command(label='11. Veslovanie')
+submenu.add_command(label='12. Kľuky')
+submenu.add_command(label='13. Preskoky cez lavičku')
+submenu.add_command(label='14. Skok do diaľky')
+file_menu.add_cascade(label='Disciplina', menu=submenu, underline=0)
+
+
+
+file_menu.add_command(label='Statistika',accelerator='Ctrl+S', compound='left', underline=0)
+
+file_menu.add_command(label='Zobrazit hodnotenia',accelerator='Ctrl+Z', compound='left', underline=0)
+
+file_menu.add_separator()
+file_menu.add_command(label='Ulozit subor', accelerator='Ctrl+U', compound='left', underline=0,)
+file_menu.add_separator()
+file_menu.add_command(label='Exit', accelerator='Alt+F4', command=exit_editor)
+menu_bar.add_cascade(label='Hlavne menu', menu=file_menu)
+
+def ukazka1():
+    webbrowser.open('https://www.sportujeme.sk/medicinbal-odhody-na-rozvoj-vybusnej-sily-video/')
+def ukazka2():
+    webbrowser.open('https://www.youtube.com/watch?v=QUaxOQCxb9c')
+def ukazka3():
+    webbrowser.open('https://www.youtube.com/watch?v=QUaxOQCxb9c')
+def ukazka4():
+    webbrowser.open('https://www.youtube.com/watch?v=3Mkora5mHH8')
+def ukazka5():
+    webbrowser.open('https://www.rogelli.sk/technika-behu/')
+def ukazka6():
+    webbrowser.open('https://beh.sk/poradna/casto-sa-vyskytujuce-chyby-pri-bezeckom-treningu/')
+def ukazka8():
+    webbrowser.open('https://www.youtube.com/watch?v=YAX8wmyrpQU')
+def ukazka9():
+    webbrowser.open('https://www.youtube.com/watch?v=0AKixhpPVAk')
+def ukazka10():
+    webbrowser.open('https://www.youtube.com/watch?v=yJbpOrt3itA')
+def ukazka11():
+    webbrowser.open('https://www.youtube.com/watch?v=zQ82RYIFLN8')
+def ukazka12():
+    webbrowser.open('https://www.youtube.com/watch?v=IODxDxX7oi4')
+def ukazka13():
+    webbrowser.open('https://www.youtube.com/watch?v=3wDLcHQb3vQ')
+def ukazka14():
+    webbrowser.open('https://www.youtube.com/watch?v=9kONQrcrZdc')
+cviky_menu = Menu(menu_bar, tearoff=0)
+cviky_menu.add_command(label='1. Hod medicinbalom', command=ukazka1)
+cviky_menu.add_command(label='2. Vydrž v zhybe-iba dievčata',command=ukazka2)
+cviky_menu.add_command(label='3. Zhyby - chlapci',command=ukazka3)
+cviky_menu.add_command(label='4. Člnkovy beh',command=ukazka4)
+cviky_menu.add_command(label='5. 100 metrov',command=ukazka5)
+cviky_menu.add_command(label='6. 1500 metrov',command=ukazka6)
+cviky_menu.add_command(label='7. 3000 metrov',)
+cviky_menu.add_command(label='8. Hod granatom',command=ukazka8)
+cviky_menu.add_command(label='9. Skok do piesku',command=ukazka9)
+cviky_menu.add_command(label='10. Sed-ľah',command=ukazka10)
+cviky_menu.add_command(label='11. Veslovanie',command=ukazka11)
+cviky_menu.add_command(label='12. Kľuky',command=ukazka12)
+cviky_menu.add_command(label='13. Preskoky cez lavičku',command=ukazka13)
+cviky_menu.add_command(label='14. Skok do diaľky',command=ukazka14)
+menu_bar.add_cascade(label='Ukažka Cvikov', menu= cviky_menu)
+
+#farebne schemy
+view_menu = Menu(menu_bar, tearoff=0)
+themes_menu = Menu(menu_bar, tearoff=0)
+view_menu.add_cascade(label='Pozadie', menu=themes_menu)
+
+color_schemes = {
+    'Default': '#000000.#FFFFFF',
+    'Greygarious': '#83406A.#D1D4D1',
+    'Aquamarine': '#5B8340.#D1E7E0',
+    'Bold Beige': '#4B4620.#FFF0E1',
+    'Cobalt Blue': '#ffffBB.#3333aa',
+    'Olive Green': '#D1E7E0.#5B8340',
+    'Night Mode': '#FFFFFF.#000000',
+}
+
+theme_choice = StringVar()
+theme_choice.set('Default')
+for k in sorted(color_schemes):
+    themes_menu.add_radiobutton(label=k, variable=theme_choice, command=change_theme)
+menu_bar.add_cascade(label='Temy', menu=view_menu)
+
+
+help_menu = Menu(menu_bar, tearoff=0)
+help_menu.add_command(label='Pomoc', command=pomoc)
+help_menu.add_command(label='O vyvojarovi', command=ovyvojarovovi)
+menu_bar.add_cascade(label='Pomoc', menu=help_menu)
+
+root.config(menu=menu_bar)  #bez tohoto to nejde
+
+# tie farebne okraje
+shortcut_bar = Frame(root,  height=25, background='light sea green')
+shortcut_bar.pack(expand='no', fill='x')
+line_number_bar = Text(root, width=4, padx=3, takefocus=0,  border=0,
+                       background='khaki', state='disabled',  wrap='none')
+line_number_bar.pack(side='left',  fill='y')
+
+#to je iba k themach
+content_text = Text(root, wrap='word', undo=1)
+content_text.pack(expand='yes', fill='both')
+scroll_bar = Scrollbar(content_text)
+content_text.configure(yscrollcommand=scroll_bar.set)
+scroll_bar.config(command=content_text.yview)
+scroll_bar.pack(side='right', fill='y')
+
+
+root.mainloop()
