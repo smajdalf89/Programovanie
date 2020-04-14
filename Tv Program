@@ -1,10 +1,11 @@
 #telocvikarske menu
-import os
+from tkinter import *
 from tkinter import Tk, PhotoImage, Menu, Frame, Text, Scrollbar, IntVar, StringVar, END, simpledialog, ttk
 import tkinter.filedialog
 import tkinter.messagebox
 import tkinter as tk
 import webbrowser
+import os
 
 PROGRAM_NAME = "Telocvikarsky program"
 
@@ -13,31 +14,269 @@ root.geometry("800x600")
 root.title(PROGRAM_NAME)
 parent = tk.Frame(root)
 
-NORM_FONT = ("Verdana", 12)
-
-def popupmsg(msg):
-    popup = tk.Tk()
-    popup.wm_title("!")
-    label = ttk.Label(popup, text=msg, font=NORM_FONT)
-    label.pack(side="top", fill="x", pady=10)
-    B1 = ttk.Button(popup, text="chlapec",command=popup.destroy )
-    B2 = ttk.Button(popup, text="dievca", command=popup.destroy)
-    B1.pack()
-    B2.pack()
-    popup.mainloop()
-
 
 def hodmedicimbalom():
-    meno = simpledialog.askstring("Vlozte meno", "prosim zadajte meno ziaka")
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
     hodmedicimbalom=[]
-    y = simpledialog.askstring("Trieda", "Zadaj triedu")
-    hodmedicimbalom.append(y)
-    v = simpledialog.askfloat("Vysledok", "Zadaj vysledok vykonu")
-    hodmedicimbalom.append(v)
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    hodmedicimbalom.append(trieda)
+    pohlavie =simpledialog.askstring("Pohlavie","Zadaj buď CH alebo D")
+    hodmedicimbalom.append(pohlavie)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    hodmedicimbalom.append(vysledok)
+    medicimbal[meno] = hodmedicimbalom
 
-    #zoznam[meno] = hodmedicimbalom
+medicimbal=dict()
+
+def vydrzvzhybe():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    vydrzvzhybe=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    vydrzvzhybe.append(trieda)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    vydrzvzhybe.append(vysledok)
+    zhyb[meno] = vydrzvzhybe
+
+zhyb=dict()
+
+def zhybCH():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    zhybyCH=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    zhybyCH.append(trieda)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    zhybyCH.append(vysledok)
+    zhybyChalani[meno] = zhybyCH
+
+zhybyChalani=dict()
+
+def clnkovybeh():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    clnkovybeh=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    clnkovybeh.append(trieda)
+    pohlavie =simpledialog.askstring("Pohlavie","Zadaj buď CH alebo D")
+    clnkovybeh.append(pohlavie)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    clnkovybeh.append(vysledok)
+    clnkovyb[meno] = clnkovybeh
+
+clnkovyb=dict()
+
+def stometrov():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    stometrov=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    stometrov.append(trieda)
+    pohlavie =simpledialog.askstring("Pohlavie","Zadaj buď CH alebo D")
+    stometrov.append(pohlavie)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    stometrov.append(vysledok)
+    stoM[meno] = stometrov
+
+stoM=dict()
+
+def tisicmetrov():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    tisicmetrov=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    tisicmetrov.append(trieda)
+    pohlavie =simpledialog.askstring("Pohlavie","Zadaj buď CH alebo D")
+    tisicmetrov.append(pohlavie)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    tisicmetrov.append(vysledok)
+    tisicM[meno] = tisicmetrov
+
+tisicM=dict()
+
+def tritisicmetrov():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    tritisicmetrov=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    tritisicmetrov.append(trieda)
+    pohlavie =simpledialog.askstring("Pohlavie","Zadaj buď CH alebo D")
+    tritisicmetrov.append(pohlavie)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    tritisicmetrov.append(vysledok)
+    tritisicM[meno] = tritisicmetrov
+
+tritisicM=dict()
+
+def hodgranatom():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    hodgranatom=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    hodgranatom.append(trieda)
+    pohlavie =simpledialog.askstring("Pohlavie","Zadaj buď CH alebo D")
+    hodgranatom.append(pohlavie)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    hodgranatom.append(vysledok)
+    hodG[meno] = hodgranatom
+
+hodG=dict()
+
+def skokdopiesku():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    skokdopiesku=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    skokdopiesku.append(trieda)
+    pohlavie =simpledialog.askstring("Pohlavie","Zadaj buď CH alebo D")
+    skokdopiesku.append(pohlavie)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    skokdopiesku.append(vysledok)
+    skokdoP[meno] = skokdopiesku
+
+skokdoP=dict()
+
+def sedlah():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    sedlah=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    sedlah.append(trieda)
+    pohlavie =simpledialog.askstring("Pohlavie","Zadaj buď CH alebo D")
+    sedlah.append(pohlavie)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    sedlah.append(vysledok)
+    sedL[meno] = sedlah
+
+sedL=dict()
+
+def veslovanie():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    veslovanie=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    veslovanie.append(trieda)
+    pohlavie =simpledialog.askstring("Pohlavie","Zadaj buď CH alebo D")
+    veslovanie.append(pohlavie)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    veslovanie.append(vysledok)
+    veslp[meno] = veslovanie
+
+veslp=dict()
+
+def kluky():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    kluky=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    kluky.append(trieda)
+    pohlavie =simpledialog.askstring("Pohlavie","Zadaj buď CH alebo D")
+    kluky.append(pohlavie)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    kluky.append(vysledok)
+    kluk[meno] = kluky
+
+kluk=dict()
+
+def preskokycezlavicku():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    preskokycezlavicku=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    preskokycezlavicku.append(trieda)
+    pohlavie =simpledialog.askstring("Pohlavie","Zadaj buď CH alebo D")
+    preskokycezlavicku.append(pohlavie)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    preskokycezlavicku.append(vysledok)
+    preskok[meno] = preskokycezlavicku
+
+preskok=dict()
+
+def skokdodialky():
+    meno =simpledialog.askstring("Vložte meno", "prosím zadajte meno žiaka")
+    skokdodialky=[]
+    trieda =simpledialog.askstring("Trieda", "Zadaj triedu")
+    skokdodialky.append(trieda)
+    pohlavie =simpledialog.askstring("Pohlavie","Zadaj buď CH alebo D")
+    skokdodialky.append(pohlavie)
+    vysledok =simpledialog.askfloat("Výsledok", "Zadaj výsledok výkonu")
+    skokdodialky.append(vysledok)
+    skokdoD[meno] = skokdodialky
+
+skokdoD=dict()
+
+def statistikaskokdodialky():
+    sko = str()
+    for key, value in sorted(skokdoD.items(), key=lambda podla: podla[1]):
+        sko += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("Skok do dialky",sko )
+
+def statistikapreskokycezlavicku():
+    pr = str()
+    for key, value in sorted(preskok.items(), key=lambda podla: podla[1]):
+        pr += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("Preskoky cez lavicku",pr )
+
+def statistikakluky():
+    k = str()
+    for key, value in sorted(kluk.items(), key=lambda podla: podla[1]):
+        k += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("Kluky",k )
+
+def statistikaveslovanie():
+    ve = str()
+    for key, value in sorted(veslp.items(), key=lambda podla: podla[1]):
+        ve += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("Veslovanie 500 metrov",ve )
+
+def statistikasedlah():
+    sl = str()
+    for key, value in sorted(sedL.items(), key=lambda podla: podla[1]):
+        sl += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("Sed-Lah",sl )
+
+def statistikaskokdopiesku():
+    sk = str()
+    for key, value in sorted(skokdoP.items(), key=lambda podla: podla[1]):
+        sk += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("Skok do piesku",sk )
+
+def statistikahodgranatom():
+    g = str()
+    for key, value in sorted(hodG.items(), key=lambda podla: podla[1]):
+        g += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("Hod granatom",g )
+
+def statistikatritisicmetrov():
+    tt = str()
+    for key, value in sorted(tritisicM.items(), key=lambda podla: podla[1]):
+        tt += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("3000 metrov",tt )
+
+def statistikatisicmetrov():
+    tm = str()
+    for key, value in sorted(tisicM.items(), key=lambda podla: podla[1]):
+        tm += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("1000 metrov",tm )
 
 
+def statistikastometrov():
+    st = str()
+    for key, value in sorted(stoM.items(), key=lambda podla: podla[1]):
+        st += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("50 metrov",st )
+
+def statistikaclnkovybeh():
+    c = str()
+    for key, value in sorted(clnkovyb.items(), key=lambda podla: podla[1]):
+        c += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("Clnkovy beh",c )
+
+def statistikazhybCH():
+    xy = str()
+    for key, value in sorted(zhybyChalani.items(), key=lambda podla: podla[1]):
+        xy += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("Kolko zhybov si dal",xy )
+
+def statistikazhyb():
+    z = str()
+    for key, value in sorted(zhyb.items(), key=lambda podla: podla[1]):
+        z += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("Vydrz v zhybe dievcata",z )
+
+def statistikahod():
+    s = str()
+    for key, value in sorted(medicimbal.items(), key=lambda podla: podla[1]):
+        s += f'{key.capitalize()}:{value}\n'
+    tkinter.messagebox.showinfo("Hod medicimbalom výsledky",s )
 
 def exit_editor():
     if tkinter.messagebox.askokcancel("Zavrieť?", "Važne chceš isť preč?"):
@@ -58,31 +297,180 @@ def ovyvojarovovi():
 menu_bar = Menu(root)
 file_menu = Menu(menu_bar, tearoff=0)
 submenu = Menu(file_menu)
-submenu1 = submenu
 submenu.add_command(label='1. Hod medicimbalom', command=hodmedicimbalom)
-submenu.add_command(label='2. Vydrž v zhybe-iba dievčata')
-submenu.add_command(label='3. Zhyby - chlapci')
-submenu.add_command(label='4. Člnkovy beh')
-submenu.add_command(label='5. 100 metrov')
-submenu.add_command(label='6. 1500 metrov')
-submenu.add_command(label='7. 3000 metrov')
-submenu.add_command(label='8. Hod granatom')
-submenu.add_command(label='9. Skok do piesku')
-submenu.add_command(label='10. Sed-ľah')
-submenu.add_command(label='11. Veslovanie')
-submenu.add_command(label='12. Kľuky')
-submenu.add_command(label='13. Preskoky cez lavičku')
-submenu.add_command(label='14. Skok do diaľky')
-file_menu.add_cascade(label='Disciplina', menu=submenu, underline=0)
+submenu.add_command(label='2. Vydrž v zhybe-iba dievčata', command=vydrzvzhybe)
+submenu.add_command(label='3. Zhyby - chlapci', command=zhybCH)
+submenu.add_command(label='4. Člnkovy beh', command=clnkovybeh)
+submenu.add_command(label='5. 50 metrov', command=stometrov)
+submenu.add_command(label='6. 1000 metrov', command=tisicmetrov)
+submenu.add_command(label='7. 3000 metrov', command=tritisicmetrov)
+submenu.add_command(label='8. Hod granatom', command=hodgranatom)
+submenu.add_command(label='9. Skok do piesku', command=skokdopiesku)
+submenu.add_command(label='10. Sed-ľah', command=sedlah)
+submenu.add_command(label='11. Veslovanie 500 metrov', command=veslovanie)
+submenu.add_command(label='12. Kľuky', command=kluky)
+submenu.add_command(label='13. Preskoky cez lavičku', command=preskokycezlavicku)
+submenu.add_command(label='14. Skok do diaľky', command=skokdodialky)
+file_menu.add_cascade(label='Disciplina-vkladanie dát', menu=submenu, underline=0)
 
 
+submenu = Menu(file_menu)
+submenu.add_command(label='1. Hod medicimbalom', command=statistikahod)
+submenu.add_command(label='2. Vydrž v zhybe-iba dievčata', command=statistikazhyb)
+submenu.add_command(label='3. Zhyby - chlapci', command=statistikazhybCH)
+submenu.add_command(label='4. Člnkovy beh', command=statistikaclnkovybeh)
+submenu.add_command(label='5. 50 metrov', command=statistikastometrov)
+submenu.add_command(label='6. 1000 metrov', command=statistikatisicmetrov)
+submenu.add_command(label='7. 3000 metrov', command=statistikatritisicmetrov)
+submenu.add_command(label='8. Hod granatom', command=statistikahodgranatom)
+submenu.add_command(label='9. Skok do piesku', command=statistikaskokdopiesku)
+submenu.add_command(label='10. Sed-ľah', command=statistikasedlah)
+submenu.add_command(label='11. Veslovanie 500 metrov', command=statistikaveslovanie)
+submenu.add_command(label='12. Kľuky', command=statistikakluky)
+submenu.add_command(label='13. Preskoky cez lavičku', command=statistikapreskokycezlavicku)
+submenu.add_command(label='14. Skok do diaľky', command=statistikaskokdodialky)
+file_menu.add_cascade(label='Statistika', menu=submenu, underline=0)
 
-file_menu.add_command(label='Statistika',accelerator='Ctrl+S', compound='left', underline=0)
+def hodnoteniehodmedicimbalom():
+    tkinter.messagebox.showerror(title='Hod medicimbalom', message='Hodnotenie Chlapci:        Hodnotenie Dievcata'
+                                                                   '\n 9 m    =1                             7 m    =1'
+                                                                   '\n 8 m    =2                             6 m    =2'
+                                                                   '\n 7-6 m =3                             5-4 m  =3'
+                                                                   '\n 5 m    =4                             3 m    =4'
+                                                                   '\n 4-0 m =5                             2-0 m  =5')
 
-file_menu.add_command(label='Zobrazit hodnotenia',accelerator='Ctrl+Z', compound='left', underline=0)
+def hodnotenievzdrzvzhybe():
+    tkinter.messagebox.showerror(title='Vzdrž v zhybe', message='Hodnotenie Dievcata'
+                                                                   '\n 30 s   =1'
+                                                                   '\n 25 s   =2'
+                                                                   '\n 20 s   =3 '
+                                                                   '\n 15 s   =4'
+                                                                   '\n 10 s   =5')
+
+def hodnoteniezhyby():
+    tkinter.messagebox.showerror(title='Zhyby', message='Hodnotenie Chlapci'
+                                                                   '\n 20  =1'
+                                                                   '\n 15  =2'
+                                                                   '\n 10  =3'
+                                                                   '\n 7    =4'
+                                                                   '\n 5    =5')
+
+def hodnotenieclnkovybeh():
+    tkinter.messagebox.showerror(title='Člnkový beh', message='Hodnotenie Chlapci:        Hodnotenie Dievcata'
+                                                                   '\n 11:5 s    =1                          13 s  =1'
+                                                                   '\n 13:5 s    =2                          15 s  =2'
+                                                                   '\n 15:5 s    =3                          17 s  =3'
+                                                                   '\n 17 s       =4                          19 s  =4'
+                                                                   '\n 20 s       =5                          23 s  =5')
+
+def hodnotenie50metrov():
+    tkinter.messagebox.showerror(title='Beh 50 Metrov', message='Hodnotenie Chlapci:        Hodnotenie Dievcata'
+                                                                   '\n 7:3 s    =1                          7:7 s  =1'
+                                                                   '\n 7:8 s    =2                          8:3 s  =2'
+                                                                   '\n 8:3 s    =3                          8:9 s  =3'
+                                                                   '\n 8:6 s    =4                          9:2 s  =4'
+                                                                   '\n 8:7 s    =5                          9:3 s  =5')
+
+def hodnotenie1000metrov():
+    tkinter.messagebox.showerror(title='Beh 1000 Metrov', message='Hodnotenie Chlapci:        Hodnotenie Dievcata'
+                                                                   '\n 3:35 m    =1                          3:46 m  =1'
+                                                                   '\n 3:56 m    =2                          4:09 m  =2'
+                                                                   '\n 4:18 m    =3                          4:32 m  =3'
+                                                                   '\n 4:29 m    =4                          4:43 m  =4'
+                                                                   '\n 4:30 m    =5                          4:44 m  =5')
+
+def hodnotenie3000metrov():
+    tkinter.messagebox.showerror(title='Beh 3000 Metrov', message='Hodnotenie Chlapci:        Hodnotenie Dievcata'
+                                                                   '\n 12:50 m    =1                        13:30 m  =1'
+                                                                   '\n 13:30 m    =2                        14:20 m  =2'
+                                                                   '\n 14:10 m    =3                        14:50 m  =3'
+                                                                   '\n 14:50 m    =4                        15:20 m  =4'
+                                                                   '\n 14:51 m    =5                        15:21 m  =5')
+
+
+def hodnoteniehodgranatom():
+    tkinter.messagebox.showerror(title='Hod granatom', message='Hodnotenie Chlapci:        Hodnotenie Dievcata'
+                                                                   '\n 926 cm    =1                        788 cm  =1'
+                                                                   '\n 746 cm    =2                        641 cm  =2'
+                                                                   '\n 566 cm    =3                        491 cm  =3'
+                                                                   '\n 476 cm    =4                        421 cm  =4'
+                                                                   '\n 476 cm    =5                        420 cm  =5')
+
+def hodnotenieskokdopiesku():
+    tkinter.messagebox.showerror(title='Skok do piesku', message='Hodnotenie Chlapci:        Hodnotenie Dievcata'
+                                                                   '\n 450 cm    =1                        400 cm  =1'
+                                                                   '\n 430 cm    =2                        370 cm  =2'
+                                                                   '\n 400 cm    =3                        340 cm  =3'
+                                                                   '\n 370 cm    =4                        310 cm  =4'
+                                                                   '\n 369 cm    =5                        309 cm  =5')
+def hodnoteniesedlah():
+    tkinter.messagebox.showerror(title='Sed-Ľah', message='Hodnotenie Chlapci:        Hodnotenie Dievcata'
+                                                                   '\n 40    =1                        36  =1'
+                                                                   '\n 32    =2                        28  =2'
+                                                                   '\n 23    =3                        19  =3'
+                                                                   '\n 19    =4                        15  =4'
+                                                                   '\n 18    =5                        14  =5')
+
+def hodnotenieveslovanie():
+    tkinter.messagebox.showerror(title='Veslovanie 500 metrov', message='Hodnotenie Chlapci:        Hodnotenie Dievcata'
+                                                                   '\n 1:30 min    =1                      2:00 min  =1'
+                                                                   '\n 1:35 min    =2                      2:05 min  =2'
+                                                                   '\n 1:40 min    =3                      2:10 min  =3'
+                                                                   '\n 1:45 min    =4                      2:15 min  =4'
+                                                                   '\n 1:46 min    =5                      2:16 min  =5')
+
+def hodnoteniekluky():
+    tkinter.messagebox.showerror(title='Kľuky', message='Hodnotenie Chlapci:        Hodnotenie Dievcata'
+                                                                   '\n 40    =1                        25  =1'
+                                                                   '\n 37    =2                        22  =2'
+                                                                   '\n 33    =3                        19  =3'
+                                                                   '\n 28    =4                        17  =4'
+                                                                   '\n 27    =5                        16  =5')
+
+def hodnoteniepreskokcezlavicku():
+    tkinter.messagebox.showerror(title='Preskoky cez lavičku', message='Hodnotenie Chlapci:        Hodnotenie Dievcata'
+                                                                   '\n 30    =1                        25  =1'
+                                                                   '\n 28    =2                        23  =2'
+                                                                   '\n 26    =3                        21  =3'
+                                                                   '\n 23    =4                        18  =4'
+                                                                   '\n 22    =5                        17  =5')
+def hodnotenieskokdodialky():
+    tkinter.messagebox.showerror(title='Skok do diaľky', message='Hodnotenie Chlapci:        Hodnotenie Dievcata'
+                                                                   '\n 226 cm    =1                        190 cm  =1'
+                                                                   '\n 205 cm    =2                        175 cm  =2'
+                                                                   '\n 184 cm    =3                        165 cm  =3'
+                                                                   '\n 173 cm    =4                        155 cm  =4'
+                                                                   '\n 172 cm    =5                        154 cm  =5')
+
+submenu = Menu(file_menu)
+submenu.add_command(label='1. Hod medicimbalom', command=hodnoteniehodmedicimbalom )
+submenu.add_command(label='2. Vydrž v zhybe-iba dievčata', command=hodnotenievzdrzvzhybe)
+submenu.add_command(label='3. Zhyby - chlapci', command=hodnoteniezhyby)
+submenu.add_command(label='4. Člnkovy beh', command=hodnotenieclnkovybeh)
+submenu.add_command(label='5. 50 metrov', command=hodnotenie50metrov)
+submenu.add_command(label='6. 1000 metrov', command=hodnotenie1000metrov)
+submenu.add_command(label='7. 3000 metrov', command=hodnotenie3000metrov)
+submenu.add_command(label='8. Hod granatom', command=hodnoteniehodgranatom)
+submenu.add_command(label='9. Skok do piesku', command=hodnotenieskokdopiesku)
+submenu.add_command(label='10. Sed-ľah', command=hodnoteniesedlah)
+submenu.add_command(label='11. Veslovanie 500 metrov', command=hodnotenieveslovanie)
+submenu.add_command(label='12. Kľuky', command=hodnoteniekluky)
+submenu.add_command(label='13. Preskoky cez lavičku', command=hodnoteniepreskokcezlavicku)
+submenu.add_command(label='14. Skok do diaľky', command=hodnotenieskokdodialky)
+file_menu.add_cascade(label='Zobrazit Hodnotenia', menu=submenu, underline=0)
+
+def ulozit():
+    nazov=simpledialog.askstring('Ulozenie suboru',"Ako sa bude volat meno suboru?")
+    f=open(nazov, 'w')
+    sk = str()
+    for key, value in sorted(skokdoP.items(), key=lambda podla: podla[1]):
+        sk += f'{key.capitalize()}:{value}\n',
+        tkinter.messagebox.showinfo(title='ulozene', message='ulozene asi')
+
 
 file_menu.add_separator()
-file_menu.add_command(label='Ulozit subor', accelerator='Ctrl+U', compound='left', underline=0,)
+file_menu.add_command(label='Ulozit subor',command=ulozit,  accelerator='Ctrl+U', compound='left', underline=0,)
+file_menu.add_command(label='Nahrat Subor', accelerator='Ctrl+N', compound='left', underline=0, )
 file_menu.add_separator()
 file_menu.add_command(label='Exit', accelerator='Alt+F4', command=exit_editor)
 menu_bar.add_cascade(label='Hlavne menu', menu=file_menu)
@@ -118,17 +506,410 @@ cviky_menu.add_command(label='1. Hod medicinbalom', command=ukazka1)
 cviky_menu.add_command(label='2. Vydrž v zhybe-iba dievčata',command=ukazka2)
 cviky_menu.add_command(label='3. Zhyby - chlapci',command=ukazka3)
 cviky_menu.add_command(label='4. Člnkovy beh',command=ukazka4)
-cviky_menu.add_command(label='5. 100 metrov',command=ukazka5)
-cviky_menu.add_command(label='6. 1500 metrov',command=ukazka6)
+cviky_menu.add_command(label='5. 50 metrov',command=ukazka5)
+cviky_menu.add_command(label='6. 1000 metrov',command=ukazka6)
 cviky_menu.add_command(label='7. 3000 metrov',)
 cviky_menu.add_command(label='8. Hod granatom',command=ukazka8)
 cviky_menu.add_command(label='9. Skok do piesku',command=ukazka9)
 cviky_menu.add_command(label='10. Sed-ľah',command=ukazka10)
-cviky_menu.add_command(label='11. Veslovanie',command=ukazka11)
+cviky_menu.add_command(label='11. Veslovanie 500 metrov',command=ukazka11)
 cviky_menu.add_command(label='12. Kľuky',command=ukazka12)
 cviky_menu.add_command(label='13. Preskoky cez lavičku',command=ukazka13)
 cviky_menu.add_command(label='14. Skok do diaľky',command=ukazka14)
 menu_bar.add_cascade(label='Ukažka Cvikov', menu= cviky_menu)
+
+
+def hodvysledokCH():
+    hodCh = simpledialog.askfloat('Zadaj výkon CH', "Koľko metrov si hodol?")
+    if hodCh >= 9:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif hodCh >= 8:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif hodCh >= 6:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif hodCh >= 5:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif hodCh >= 0:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkýs to znova")
+
+def hodvysledokD():
+    hodd = simpledialog.askfloat('Zadaj vykon D', "Kolko metrov si hodila?")
+    if hodd >= 7:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif hodd >= 6:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif hodd >= 4:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif hodd >= 3:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif hodd >= 0:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def zhybvysledok():
+    zhybD = simpledialog.askfloat('Zadaj vykon D', "Kolko sekund si vydrzala?")
+    if zhybD >= 30:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif zhybD >= 25:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif zhybD >= 20:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif zhybD >= 15:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif zhybD >= 10:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def zhybvyCHsledok():
+    zhybch = simpledialog.askfloat('Zadaj vykon D', "Kolko zhybov si spravil?")
+    if zhybch >= 20:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif zhybch >= 15:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif zhybch >= 10:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif zhybch >= 7:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif zhybch >= 5:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def clnkovybehCH():
+    clnkCH = simpledialog.askfloat('Zadaj cas CH', "Za kolko sekund si odbehol?")
+    if clnkCH <= 11.5:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif clnkCH <= 13.5:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif clnkCH <= 15.5:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif clnkCH <= 17:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif clnkCH <= 20:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def clnkovybehD():
+    clnkd = simpledialog.askfloat('Zadaj cas D', "Za kolko sekund si zabehla?")
+    if clnkd <= 13:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif clnkd <= 15:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif clnkd <= 17:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif clnkd <= 19:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif clnkd <= 23:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def stometrovCH():
+    stoch = simpledialog.askfloat('Zadaj cas CH', "Za kolko sekund si zabehol?")
+    if stoch <= 7.3:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif stoch <= 7.8:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif stoch <= 8.3:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif stoch <= 8.6:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif stoch <= 8.7:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def stometrovD():
+    stod = simpledialog.askfloat('Zadaj cas D', "Za kolko sekund si zabehola?")
+    if stod <= 7.7:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif stod <= 8.3:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif stod <= 8.9:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif stod <= 9.2:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif stod <= 9.3:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def tisicmetroCH():
+    tism = simpledialog.askfloat('Zadaj cas CH', "Za kolko sekund si zabehol?")
+    if tism <= 3.35:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif tism <= 3.56:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif tism <= 4.18:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif tism <= 4.29:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif tism <= 4.30:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def tisicmetroD():
+    tisd = simpledialog.askfloat('Zadaj cas D', "Za kolko sekund si zabehola?")
+    if tisd <= 3.46:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif tisd <= 4.09:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif tisd <= 4.32:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif tisd <= 4.43:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif tisd <= 4.44:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def tritisicmetrovCH():
+    tritM = simpledialog.askfloat('Zadaj cas CH', "Za kolko sekund si zabehol?")
+    if tritM <= 12.50:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif tritM <= 13.30:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif tritM <= 14.10:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif tritM <= 14.50:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif tritM <= 14.51:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def tritisicmetrovD():
+    tritM = simpledialog.askfloat('Zadaj cas D', "Za kolko sekund si zabehola?")
+    if tritM <= 13.30:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif tritM <= 14.20:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif tritM <= 14.50:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif tritM <= 15.20:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif tritM <= 15.21:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def hodgranatomCH():
+    hodCH = simpledialog.askfloat('Zadaj cas Ch', "Kolko si hodil v cm?")
+    if hodCH >= 926:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif hodCH >= 746:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif hodCH >= 566:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif hodCH >= 476:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif hodCH >= 475:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def hodgranatomD():
+    hodD = simpledialog.askfloat('Zadaj cas D', "Kolko si hodila v cm?")
+    if hodD >= 788:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif hodD >= 641:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif hodD >= 491:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif hodD >= 421:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif hodD >= 420:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def skokdopieskuCH():
+    skokdCH = simpledialog.askfloat('Zadaj cas Ch', "Kolko si skocil v cm?")
+    if skokdCH >= 450:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif skokdCH >= 430:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif skokdCH >= 400:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif skokdCH >= 370:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif skokdCH >= 369:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def skokdopieskuD():
+    skokdD = simpledialog.askfloat('Zadaj cas D', "Kolko si skocila v cm?")
+    if skokdD >= 400:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif skokdD >= 370:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif skokdD >= 340:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif skokdD >= 310:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif skokdD >= 309:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def sedlahCH():
+    sedCh = simpledialog.askfloat('Zadaj cas Ch', "Kolko sed-lahov si spravil?")
+    if sedCh >= 40:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif sedCh >= 32:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif sedCh >= 23:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif sedCh >= 19:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif sedCh >= 18:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def sedlahD():
+    sedd = simpledialog.askfloat('Zadaj cas D', "Kolko sed-lahov si spravila?")
+    if sedd >= 36:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif sedd >= 28:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif sedd >= 19:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif sedd >= 15:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif sedd >= 14:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def veslovanieCH():
+    vesCH = simpledialog.askfloat('Zadaj cas CH', "Za aky cas si zavesloval?")
+    if vesCH <= 1.30:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif vesCH <= 1.35:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif vesCH <= 1.40:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif vesCH <= 1.45:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif vesCH <= 1.46:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def veslovanieD():
+    vesD = simpledialog.askfloat('Zadaj cas D', "Za aky cas si zaveslovala?")
+    if vesD <= 2.0:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif vesD <= 2.05:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif vesD <= 2.10:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif vesD <= 2.15:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif vesD <= 2.16:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def klukyCH():
+    klukCH = simpledialog.askfloat('Zadaj cas Ch', "Kolko si spravil klukov za minutu?")
+    if klukCH >= 40:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif klukCH >= 37:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif klukCH >= 33:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif klukCH >= 28:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif klukCH >= 27:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def klukyD():
+    klukD = simpledialog.askfloat('Zadaj cas D', "Kolko si spravila klukov za minutu?")
+    if klukD >= 25:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif klukD >= 22:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif klukD >= 19:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif klukD >= 17:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif klukD >= 16:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def preskokcezlavickuCH():
+    presCH = simpledialog.askfloat('Zadaj cas Ch', "Kolko si spravil preskokov cez lavicku za 30 sekund?")
+    if presCH >= 30:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif presCH >= 28:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif presCH >= 26:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif presCH >= 23:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif presCH >= 22:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def preskokcezlavickuD():
+    presD = simpledialog.askfloat('Zadaj cas D', "Kolko si spravila preskokov cez lavicku za 30 sekund?")
+    if presD >= 25:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif presD >= 23:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif presD >= 21:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif presD >= 18:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif presD >= 17:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def skokdodialkyCH():
+    skokch = simpledialog.askfloat('Zadaj cas CH', "Kolko si skocil z miesta v cm?")
+    if skokch >= 226:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif skokch >= 205:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif skokch >= 184:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif skokch >= 173:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif skokch >= 172:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+def skokdodialkyD():
+    skokD = simpledialog.askfloat('Zadaj cas D', "Kolko si skocila z miesta v cm?")
+    if skokD >= 190:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 1!\nVýborne")
+    elif skokD >= 175:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 2!")
+    elif skokD >= 165:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 3!")
+    elif skokD >= 155:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 4!")
+    elif skokD >= 154:
+        tkinter.messagebox.showinfo("Tvoj výsledok je", "Tvoja znamka je 5!\nSkus to znova")
+
+vysledky_menu = Menu(menu_bar, tearoff=0)
+submenu1 = Menu(vysledky_menu)
+submenu1.add_command(label='Chlapec', command=hodvysledokCH)   #tu tie def
+submenu1.add_command(label='Dievca', command=hodvysledokD)
+submenu2 = Menu(vysledky_menu)
+submenu2.add_command(label='Chlapec', command=clnkovybehCH)
+submenu2.add_command(label='Dievca', command=clnkovybehD)
+submenu3 = Menu(vysledky_menu)
+submenu3.add_command(label='Chlapec', command=stometrovCH)
+submenu3.add_command(label='Dievca', command=stometrovD)
+submenu4 = Menu(vysledky_menu)
+submenu4.add_command(label='Chlapec', command=tisicmetroCH)
+submenu4.add_command(label='Dievca', command=tisicmetroD)
+submenu5 = Menu(vysledky_menu)
+submenu5.add_command(label='Chlapec', command=tritisicmetrovCH)
+submenu5.add_command(label='Dievca', command=tritisicmetrovD)
+submenu6 = Menu(vysledky_menu)
+submenu6.add_command(label='Chlapec', command=hodgranatomCH)
+submenu6.add_command(label='Dievca', command=hodgranatomD)
+submenu7 = Menu(vysledky_menu)
+submenu7.add_command(label='Chlapec', command=skokdopieskuCH)
+submenu7.add_command(label='Dievca', command=skokdopieskuD)
+submenu8 = Menu(vysledky_menu)
+submenu8.add_command(label='Chlapec', command=sedlahCH)
+submenu8.add_command(label='Dievca', command=sedlahD)
+submenu9 = Menu(vysledky_menu)
+submenu9.add_command(label='Chlapec', command=veslovanieCH)
+submenu9.add_command(label='Dievca', command=veslovanieD)
+submenu10 = Menu(vysledky_menu)
+submenu10.add_command(label='Chlapec', command=klukyCH)
+submenu10.add_command(label='Dievca', command=klukyD)
+submenu11 = Menu(vysledky_menu)
+submenu11.add_command(label='Chlapec', command=preskokcezlavickuCH)
+submenu11.add_command(label='Dievca', command=preskokcezlavickuD)
+submenu12 = Menu(vysledky_menu)
+submenu12.add_command(label='Chlapec', command=skokdodialkyCH)
+submenu12.add_command(label='Dievca', command=skokdodialkyD)
+vysledky_menu.add_cascade(label='1. Hod medicimbalom', menu=submenu1,)
+vysledky_menu.add_cascade(label='2. Vydrž v zhybe-iba dievčata', command=zhybvysledok)
+vysledky_menu.add_cascade(label='3. Zhyby - chlapci', command=zhybvyCHsledok)
+vysledky_menu.add_cascade(label='4. Člnkovy beh', menu=submenu2)
+vysledky_menu.add_cascade(label='5. 50 metrov', menu=submenu3)
+vysledky_menu.add_cascade(label='6. 1500 metrov', menu=submenu4)
+vysledky_menu.add_cascade(label='7. 3000 metrov', menu=submenu5)
+vysledky_menu.add_cascade(label='8. Hod granatom', menu=submenu6)
+vysledky_menu.add_cascade(label='9. Skok do piesku', menu=submenu7)
+vysledky_menu.add_cascade(label='10.Sed-lah',menu=submenu8)
+vysledky_menu.add_cascade(label='11. Veslovanie 500 metrov', menu=submenu9)
+vysledky_menu.add_cascade(label='12. Kľuky', menu=submenu10)
+vysledky_menu.add_cascade(label='13. Preskoky cez lavičku', menu=submenu11)
+vysledky_menu.add_cascade(label='14. Skok do diaľky', menu=submenu12)
+menu_bar.add_cascade(label='Zistit Vysledok', menu=vysledky_menu)
+
 
 #farebne schemy
 view_menu = Menu(menu_bar, tearoff=0)
