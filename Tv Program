@@ -6,6 +6,7 @@ import tkinter.messagebox
 import tkinter as tk
 import webbrowser
 import os
+import pickle
 
 PROGRAM_NAME = "Telocvikarsky program"
 
@@ -459,18 +460,31 @@ submenu.add_command(label='13. Preskoky cez lavičku', command=hodnoteniepreskok
 submenu.add_command(label='14. Skok do diaľky', command=hodnotenieskokdodialky)
 file_menu.add_cascade(label='Zobrazit Hodnotenia', menu=submenu, underline=0)
 
-def ulozit():
-    nazov=simpledialog.askstring('Ulozenie suboru',"Ako sa bude volat meno suboru?")
-    f=open(nazov, 'w')
-    sk = str()
-    for key, value in sorted(skokdoP.items(), key=lambda podla: podla[1]):
-        sk += f'{key.capitalize()}:{value}\n',
-        tkinter.messagebox.showinfo(title='ulozene', message='ulozene asi')
+PICKLE_FILE = 'vsetko.pickle'
+vsetko = (medicimbal, zhyb, zhybyChalani, clnkovyb, stoM, tisicM, tritisicM,
+          hodG, skokdoP, sedL, veslp, kluk, preskok, skokdoD)
 
+def print_dicts():
+    for d in vsetko:
+        print(d)
+    print('-'*10)
+
+def ulozit_pickle():
+    print_dicts()
+    with open(PICKLE_FILE, 'wb') as f:
+        pickle.dump(vsetko, f, protocol=-1)
+
+def load_pickle():
+    print_dicts()  # before
+    with open(PICKLE_FILE, 'rb') as f:
+        dictlist = pickle.load(f)
+    for i, d in enumerate(dictlist):
+        vsetko[i].update(d)
+    print_dicts()  # after
 
 file_menu.add_separator()
-file_menu.add_command(label='Ulozit subor',command=ulozit,  accelerator='Ctrl+U', compound='left', underline=0,)
-file_menu.add_command(label='Nahrat Subor', accelerator='Ctrl+N', compound='left', underline=0, )
+file_menu.add_command(label='Ulozit subor', command=ulozit_pickle,  accelerator='Ctrl+U', compound='left', underline=0,)
+file_menu.add_command(label='Nahrat Subor', command=load_pickle, accelerator='Ctrl+N', compound='left', underline=0, )
 file_menu.add_separator()
 file_menu.add_command(label='Exit', accelerator='Alt+F4', command=exit_editor)
 menu_bar.add_cascade(label='Hlavne menu', menu=file_menu)
